@@ -3,5 +3,7 @@
 
     <string name="hello">Hello World, AnnoyDroidActivity!</string>
     <string name="app_name">AnnoyDroid</string>
+    <string name="notificationName">AnnoyDroid</string>
+    <string name="notificationMessage">Oops... Did I do that?</string>
 
 </resources>

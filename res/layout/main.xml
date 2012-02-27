@@ -4,9 +4,30 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TextView
+    <TextView android:id="@+id/annoy_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="32dp"
+        android:text="AnnoyDroid" />
+    
+    <TextView android:id="@+id/annoy_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="16dp"
+        android:text="Being really f@king annoying since 2012." />
+    
+    <ImageView android:id="@+id/urkel_image"
+        android:layout_width="240dp"
+        android:layout_height="320dp"
+        android:layout_gravity="center"
+        android:src="@drawable/steve_urkel" />
+
+    <Button
+        android:id="@+id/annoy_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello" />
+        android:text="Toggle running AnnoyDroid" />
 
 </LinearLayout>
