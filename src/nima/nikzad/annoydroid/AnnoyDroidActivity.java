@@ -18,14 +18,14 @@ public class AnnoyDroidActivity extends Activity {
 	private AnnoyDroidService annoyService;
 	private Intent serviceIntent;
 	private Button serviceToggleButton;
-	private MediaPlayer mediaPlayer;
+	//private MediaPlayer mediaPlayer;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        mediaPlayer = MediaPlayer.create(this, R.raw.did_i_do);
+        //mediaPlayer = MediaPlayer.create(this, R.raw.did_i_do);
         serviceIntent = new Intent(this, AnnoyDroidService.class);
         serviceToggleButton = (Button)findViewById(R.id.annoy_button);
         serviceToggleButton.setOnClickListener(new OnClickListener() {
@@ -77,7 +77,7 @@ public class AnnoyDroidActivity extends Activity {
     	Log.d(TAG, "Attempting to start service...");
     	startService(serviceIntent);
     	bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
-    	mediaPlayer.start();
+    	//mediaPlayer.start();
     }
     
     private void doStopService() {
