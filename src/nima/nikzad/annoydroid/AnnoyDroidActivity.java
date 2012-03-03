@@ -8,6 +8,7 @@ import android.content.ServiceConnection;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -73,6 +74,7 @@ public class AnnoyDroidActivity extends Activity {
     };
     
     private void doStartService() {
+    	Log.d(TAG, "Attempting to start service...");
     	startService(serviceIntent);
     	bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
     	mediaPlayer.start();
@@ -80,6 +82,7 @@ public class AnnoyDroidActivity extends Activity {
     
     private void doStopService() {
     	if(annoyService != null) {
+    		Log.d(TAG, "Attempting to stop service...");
     		unbindService(serviceConnection);
     		annoyService.killService();
     		annoyService = null;
