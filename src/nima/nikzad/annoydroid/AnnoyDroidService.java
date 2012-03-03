@@ -32,6 +32,7 @@ public class AnnoyDroidService extends Service {
 		notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
 		showNotification();
 		logcatWatcher = new LogcatWatcher();
+		logcatWatcher.start();
 	}
 	
 	@Override
@@ -47,6 +48,7 @@ public class AnnoyDroidService extends Service {
 		Log.d(TAG, "AnnoyDroidService destroyed!");
 		// Get rid of notification in status bar
 		notificationManager.cancel(TAG.hashCode());
+		logcatWatcher.stop();
 	}
 	
 	@Override
@@ -57,14 +59,6 @@ public class AnnoyDroidService extends Service {
 	///////////////////////////
 	// PUBLIC METHODS
 	///////////////////////////
-	
-	public void startTracking() {
-		logcatWatcher.start();
-	}
-	
-	public void stopTracking() {
-		logcatWatcher.stop();
-	}
 	
 	public void killService() {
 		this.stopSelf();
