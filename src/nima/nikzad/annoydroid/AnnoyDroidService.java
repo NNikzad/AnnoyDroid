@@ -1,5 +1,6 @@
 package nima.nikzad.annoydroid;
 
+import nima.nikzad.annoydroid.logcat.LogcatWatcher;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -13,6 +14,8 @@ public class AnnoyDroidService extends Service {
 	private static final String TAG = "AnnoyDroidService";
 	private final IBinder m_binder = new LocalBinder();
 	private NotificationManager notificationManager;
+	
+	private LogcatWatcher logcatWatcher;
 
 	///////////////////////////
 	// LIFE CYCLE
@@ -28,6 +31,7 @@ public class AnnoyDroidService extends Service {
 		Log.d(TAG, "AnnoyDroidService created!");
 		notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
 		showNotification();
+		logcatWatcher = new LogcatWatcher();
 	}
 	
 	@Override
@@ -48,6 +52,18 @@ public class AnnoyDroidService extends Service {
 	@Override
 	public IBinder onBind(Intent arg0) {
 		return m_binder;
+	}
+	
+	///////////////////////////
+	// PUBLIC METHODS
+	///////////////////////////
+	
+	public void startTracking() {
+		logcatWatcher.start();
+	}
+	
+	public void stopTracking() {
+		logcatWatcher.stop();
 	}
 	
 	public void killService() {
