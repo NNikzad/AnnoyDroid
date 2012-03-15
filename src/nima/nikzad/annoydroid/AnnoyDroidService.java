@@ -1,6 +1,8 @@
 package nima.nikzad.annoydroid;
 
 import nima.nikzad.annoydroid.logcat.LogcatWatcher;
+import nima.nikzad.annoydroid.tracktarget.FacebookLaunchTarget;
+import nima.nikzad.annoydroid.tracktarget.TrackTarget;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -13,9 +15,11 @@ import android.util.Log;
 public class AnnoyDroidService extends Service {
 	private static final String TAG = "AnnoyDroidService";
 	private final IBinder m_binder = new LocalBinder();
-	private NotificationManager notificationManager;
+	private NotificationManager m_notificationManager;
 	
-	private LogcatWatcher logcatWatcher;
+	private TrackTarget m_facebookLaunchTarget;
+	
+	private LogcatWatcher m_logcatWatcher;
 
 	///////////////////////////
 	// LIFE CYCLE
@@ -29,10 +33,17 @@ public class AnnoyDroidService extends Service {
 	@Override
 	public void onCreate() {
 		Log.d(TAG, "AnnoyDroidService created!");
-		notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+		m_notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
 		showNotification();
-		logcatWatcher = new LogcatWatcher();
-		logcatWatcher.start();
+		m_logcatWatcher = new LogcatWatcher();
+		
+		// Create each track target
+		m_facebookLaunchTarget = new FacebookLaunchTarget();
+		
+		// Subscribe each tracker of interest
+		m_logcatWatcher.addTarget(m_facebookLaunchTarget);
+		
+		m_logcatWatcher.start();
 	}
 	
 	@Override
@@ -47,8 +58,8 @@ public class AnnoyDroidService extends Service {
 	public void onDestroy() {
 		Log.d(TAG, "AnnoyDroidService destroyed!");
 		// Get rid of notification in status bar
-		notificationManager.cancel(TAG.hashCode());
-		logcatWatcher.stop();
+		m_notificationManager.cancel(TAG.hashCode());
+		m_logcatWatcher.stop();
 	}
 	
 	@Override
@@ -82,7 +93,7 @@ public class AnnoyDroidService extends Service {
 		notification.setLatestEventInfo(this, label, message, contentIntent);
 		
 		// Send notification
-		notificationManager.notify(TAG.hashCode(), notification);
+		m_notificationManager.notify(TAG.hashCode(), notification);
 	}
 
 }
