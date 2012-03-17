@@ -9,7 +9,7 @@ public class FacebookLaunchTarget extends TrackTarget {
 	private class FacebookLaunchHandler extends Handler {
 		@Override
 		public void handleMessage(Message msg) {
-			Log.d("FacebookLaunchHandler", msg.toString());
+			Log.d("FacebookLaunchHandler", (String)msg.obj);
 		}
 	};
 	
