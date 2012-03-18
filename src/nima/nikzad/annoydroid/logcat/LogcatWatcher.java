@@ -88,7 +88,14 @@ public class LogcatWatcher {
 		if(isRunning) {
 			isRunning = false;
 			m_logcatProcess.destroy();
-			Log.d(TAG, "Process exited: " + m_logcatProcess.exitValue());
+			//Log.d(TAG, "Process exited: " + m_logcatProcess.exitValue());
+			
+			// Destroy the log
+			try {
+				Runtime.getRuntime().exec("logcat -c");
+			} catch (IOException e) {
+				Log.e(TAG, "Exception clearing the log: " + e);
+			}
 		}
 	}
 	
@@ -120,6 +127,8 @@ public class LogcatWatcher {
 		}
 		
 		private void deliverLog(String logMessage) {
+			if(logMessage == null)
+				return;
 			Log.d(TAG, "*** " + logMessage);
 			int endOfSource = logMessage.indexOf('(', 0);
 			int startOfMessage = logMessage.indexOf(':', 0);
