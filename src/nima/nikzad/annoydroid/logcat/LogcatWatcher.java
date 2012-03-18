@@ -100,7 +100,7 @@ public class LogcatWatcher {
 			try {
 				// Throw away anything already in the queue
 				// Give some time to fill buffer
-				sleep(1000);
+				sleep(3000);
 				while(m_logcatReader.ready()) {
 					m_logcatReader.readLine();
 				}
