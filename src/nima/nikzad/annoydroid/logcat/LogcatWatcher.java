@@ -100,16 +100,16 @@ public class LogcatWatcher {
 			try {
 				// Throw away anything already in the queue
 				// Give some time to fill buffer
-				sleep(3000);
+				sleep(5000);
 				while(m_logcatReader.ready()) {
 					m_logcatReader.readLine();
 				}
 				while(isRunning) {
-					if(m_logcatReader.ready()) {
+//					if(m_logcatReader.ready()) {
 						deliverLog(m_logcatReader.readLine());
-					} else {
-						sleep(1000);
-					}
+//					} else {
+//						sleep(1000);
+//					}
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -120,7 +120,7 @@ public class LogcatWatcher {
 		}
 		
 		private void deliverLog(String logMessage) {
-			//Log.d(TAG, "*** " + logMessage);
+			Log.d(TAG, "*** " + logMessage);
 			int endOfSource = logMessage.indexOf('(', 0);
 			int startOfMessage = logMessage.indexOf(':', 0);
 			if(endOfSource != -1 && startOfMessage != -1) {
