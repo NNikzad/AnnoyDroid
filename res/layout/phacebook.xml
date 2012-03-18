@@ -4,9 +4,10 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TextView
+    <ImageView android:id="@+id/phachbook_imageview"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello there." />
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:src="@drawable/phacebook" />
 
 </LinearLayout>
