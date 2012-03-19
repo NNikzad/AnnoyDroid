@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="16dp"
-        android:text="Being really f@king annoying since 2012." />
+        android:text="Trolling users is fun!" />
     
     <ImageView android:id="@+id/urkel_image"
         android:layout_width="240dp"

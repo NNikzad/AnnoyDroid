@@ -129,7 +129,7 @@ public class LogcatWatcher {
 		private void deliverLog(String logMessage) {
 			if(logMessage == null)
 				return;
-			Log.d(TAG, "*** " + logMessage);
+			//Log.d(TAG, "*** " + logMessage);
 			int endOfSource = logMessage.indexOf('(', 0);
 			int startOfMessage = logMessage.indexOf(':', 0);
 			if(endOfSource != -1 && startOfMessage != -1) {
