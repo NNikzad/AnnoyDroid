@@ -2,6 +2,7 @@ package nima.nikzad.annoydroid;
 
 import nima.nikzad.annoydroid.logcat.LogcatWatcher;
 import nima.nikzad.annoydroid.tracktarget.FacebookLaunchTarget;
+import nima.nikzad.annoydroid.tracktarget.FoursquareNoiseTarget;
 import nima.nikzad.annoydroid.tracktarget.TrackTarget;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -18,6 +19,7 @@ public class AnnoyDroidService extends Service {
 	private NotificationManager m_notificationManager;
 	
 	private TrackTarget m_facebookLaunchTarget;
+	private TrackTarget m_foursquareNoiseTarget;
 	
 	private LogcatWatcher m_logcatWatcher;
 
@@ -39,9 +41,11 @@ public class AnnoyDroidService extends Service {
 		
 		// Create each track target
 		m_facebookLaunchTarget = new FacebookLaunchTarget(this);
+		m_foursquareNoiseTarget = new FoursquareNoiseTarget(this);
 		
 		// Subscribe each tracker of interest
 		m_logcatWatcher.addTarget(m_facebookLaunchTarget);
+		m_logcatWatcher.addTarget(m_foursquareNoiseTarget);
 		
 		m_logcatWatcher.start();
 	}
